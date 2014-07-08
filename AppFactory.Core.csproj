@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDataContainerExtensions.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="converters\IntToBrush.cs" />
     <Compile Include="converters\NullToVis.cs" />
     <Compile Include="converters\StringFormatter.cs" />
     <Compile Include="converters\BoolToBrush.cs" />
