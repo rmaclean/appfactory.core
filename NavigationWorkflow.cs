@@ -2,18 +2,15 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;     
 
     public class NavigationWorkflow
     {
-        private object lastParameter;
         private static NavigationWorkflow instance = new NavigationWorkflow();
-        private string currentState = "";
         private Dictionary<string, Func<object, WorkflowResult>> steps;
 
         private NavigationWorkflow()
         {
+            CurrentStep = "";
         }
 
         public static NavigationWorkflow Instance
@@ -24,11 +21,15 @@
             }
         }
 
+        public string CurrentStep { get; set; }
+
+        public object Parameter { get; set; }
+
         public void Configure(Dictionary<string, Func<object, WorkflowResult>> steps, object firstStepParameter = null)
         {
             if (firstStepParameter != null)
             {
-                lastParameter = firstStepParameter;
+                Parameter = firstStepParameter;
             }
 
             this.steps = steps;
@@ -37,27 +38,24 @@
 
         public void Next()
         {
-            var action = steps[currentState];
-            var result = action(lastParameter);
-            lastParameter = result.Parameter;
-            currentState = result.Step;
-        }        
+            var action = steps[CurrentStep];
+            var result = action(Parameter);
+            CurrentStep = result.Step;
+        }
     }
 
     public class WorkflowResult
     {
+        public WorkflowResult(string step, object parameter)
+        {
+            this.Step = step;
+        }
+
         public string Step { get; private set; }
-        public object Parameter { get; private set; }
 
         public static implicit operator WorkflowResult(string step)
         {
             return new WorkflowResult(step, null);
-        }
-
-        public WorkflowResult(string step, object parameter)
-        {
-            this.Step = step;
-            this.Parameter = parameter;
         }
     }
 }
