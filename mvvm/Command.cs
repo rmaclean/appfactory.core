@@ -1,4 +1,10 @@
-﻿namespace appfactory.core
+﻿//-----------------------------------------------------------------------
+// <copyright file="Command.cs" company="AppFactory Team">
+//     Copyright AppFactory Team. All Rights Reserved. This code released under the terms of the Microsoft Public License (MS-PL, http://opensource.org/licenses/ms-pl.html.) This is sample code only, do not use in production environments.
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace appfactory.core.mvvm
 {
     using System;
     using System.Threading.Tasks;
@@ -8,17 +14,17 @@
     {
         public static ICommand Construct<T>(Action<T> action)
         {
-            return new Command<T, object>(action, _ => { return true; });
+            return new Command<T, object>(action, _ => true);
         }
 
         public static ICommand Construct(Action action)
         {
-            return new Command<object, object>(_ => { action(); }, _ => { return true; });
+            return new Command<object, object>(_ => action(), _ => true);
         }
 
         public static ICommand ConstructFunc(Func<Task> action)
         {
-            return new Command<object, object>(_ => { action(); }, _ => { return true; });
+            return new Command<object, object>(_ => action(), _ => true);
         }
     }
 

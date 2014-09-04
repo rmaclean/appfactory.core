@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="BoolToVisibility.cs" company="AppFactory Team">
+// <copyright file="CurrencyToVisibility.cs" company="AppFactory Team">
 //     Copyright AppFactory Team. All Rights Reserved. This code released under the terms of the Microsoft Public License (MS-PL, http://opensource.org/licenses/ms-pl.html.) This is sample code only, do not use in production environments.
 // </copyright>
 //-----------------------------------------------------------------------
@@ -7,27 +7,28 @@
 namespace appfactory.core.converters
 {
     using System;
+    using System.Globalization;
     using Windows.UI.Xaml;
     using Windows.UI.Xaml.Data;
 
-    public class BoolToVisibility : IValueConverter
+    public class CurrencyToVisibility : IValueConverter
     {
-        public bool InvertResult { get; set; }
-
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var input = (bool)value;
-            if (InvertResult)
+            var amountString = ((string)value).ToUpperInvariant().Replace("R", "");
+            var amount = System.Convert.ToDouble(amountString, CultureInfo.InvariantCulture);
+
+            if (amount > 0)
             {
-                input = !input;
+                return Visibility.Visible;
             }
 
-            return input ? Visibility.Visible : Visibility.Collapsed;
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

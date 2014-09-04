@@ -41,8 +41,12 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDataContainerExtensions.cs" />
-    <Compile Include="Command.cs" />
+    <Compile Include="extensions\ApplicationDataContainerExtensions.cs" />
+    <Compile Include="attached\SetHTML.cs" />
+    <Compile Include="attached\UpdateTextboxOnKeyPress.cs" />
+    <Compile Include="mvvm\Command.cs" />
+    <Compile Include="converters\AdditionConverter.cs" />
+    <Compile Include="converters\CurrencyToVisibility.cs" />
     <Compile Include="converters\IntToBrush.cs" />
     <Compile Include="converters\NullToVis.cs" />
     <Compile Include="converters\StringFormatter.cs" />
@@ -50,10 +54,12 @@
     <Compile Include="converters\BoolToVisibility.cs" />
     <Compile Include="converters\NumberToVisibility.cs" />
     <Compile Include="converters\StringToVis.cs" />
-    <Compile Include="DI.cs" />
-    <Compile Include="NavigationWorkflow.cs" />
+    <Compile Include="converters\StringValueToVisibility.cs" />
+    <Compile Include="mvvm\DI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModelBase.cs" />
+    <Compile Include="mvvm\ViewModelBase.cs" />
+    <Compile Include="workflow\ProcessBase.cs" />
+    <Compile Include="workflow\ProcessStepBase.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
