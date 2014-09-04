@@ -41,12 +41,12 @@
     <TargetPlatform Include="Windows, Version=8.1" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="converters\InvertBooleanConverter.cs" />
     <Compile Include="extensions\ApplicationDataContainerExtensions.cs" />
     <Compile Include="attached\SetHTML.cs" />
     <Compile Include="attached\UpdateTextboxOnKeyPress.cs" />
     <Compile Include="mvvm\Command.cs" />
     <Compile Include="converters\AdditionConverter.cs" />
-    <Compile Include="converters\CurrencyToVisibility.cs" />
     <Compile Include="converters\IntToBrush.cs" />
     <Compile Include="converters\NullToVis.cs" />
     <Compile Include="converters\StringFormatter.cs" />
